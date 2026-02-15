@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium Construction & Architecture</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- NAVBAR -->
+  <header>
+    <nav id="navbar">
+      <div class="logo">ARCHITECTURE</div>
+      <ul class="nav-links">
+        <li data-key="our_projects"><a href="our-projects.html">Наши проекты</a></li>
+        <li data-key="people"><a href="people.html">Команда</a></li>
+        <li data-key="careers"><a href="careers.html">Карьера</a></li>
+        <li data-key="about"><a href="about.html">О нас</a></li>
+        <li data-key="contact"><a href="contact.html">Контакты</a></li>
+      </ul>
+      <div class="lang-toggle">
+        <span id="ru" class="active">RU</span> | <span id="en">EN</span>
+      </div>
+    </nav>
+  </header>
+
+  <!-- FULLSCREEN VIDEO LANDING -->
+  <section id="landing">
+    <video autoplay muted loop id="landingVideo">
+      <source src="assets/videos/landing.mp4" type="video/mp4">
+    </video>
+    <div class="landing-overlay">
+      <h1 data-key="headline">Инженерное совершенство в архитектуре</h1>
+    </div>
+  </section>
+
+  <!-- ANIMATED COUNTERS -->
+  <section id="counters">
+    <div class="counter-item">
+      <h2 class="count" data-target="150">0</h2>
+      <p data-key="projects_completed">Проектов завершено</p>
+    </div>
+    <div class="counter-item">
+      <h2 class="count" data-target="25">0</h2>
+      <p data-key="years_experience">Лет опыта</p>
+    </div>
+    <div class="counter-item">
+      <h2 class="count" data-target="40">0</h2>
+      <p data-key="team_members">Сотрудников</p>
+    </div>
+  </section>
+
+  <!-- HORIZONTAL SCROLL GALLERY -->
+  <section id="horizontal-gallery">
+    <div class="gallery-container">
+      <div class="gallery-text">
+        <h2 data-key="our_projects">Наши проекты</h2>
+        <p data-key="gallery_description">Превосходство в инженерии и дизайне</p>
+      </div>
+      <div class="gallery-images">
+        <div class="image-slide"><img src="assets/images/project1.jpg" alt=""></div>
+        <div class="image-slide"><img src="assets/images/project2.jpg" alt=""></div>
+        <div class="image-slide"><img src="assets/images/project3.jpg" alt=""></div>
+        <!-- Add more images -->
+      </div>
+    </div>
+  </section>
+
+  <!-- SCROLL-REVEAL TEXT -->
+  <section id="scroll-text">
+    <div class="scroll-text-container">
+      <div class="text-block" data-key="quality">Качество в каждой детали</div>
+      <div class="text-block" data-key="precision">Прецизионная инженерия</div>
+      <div class="text-block" data-key="sustainability">Устойчивое развитие</div>
+      <div class="text-block" data-key="excellence">Совершенство в проектировании</div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <h2 data-key="cta">Начните ваш проект</h2>
+      <p data-key="footer_text">© 2026 Premium Construction & Architecture. Все права защищены.</p>
+      <ul class="footer-links">
+        <li><a href="our-projects.html" data-key="our_projects">Наши проекты</a></li>
+        <li><a href="people.html" data-key="people">Команда</a></li>
+        <li><a href="contact.html" data-key="contact">Контакты</a></li>
+      </ul>
+      <div class="socials">
+        <span>IG</span><span>LI</span><span>FB</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/language.js"></script>
+</body>
+</html>
