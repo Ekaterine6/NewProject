@@ -50,31 +50,27 @@
     </div>
   </section>
 
-  <!-- HORIZONTAL SCROLL GALLERY -->
-  <section id="horizontal-gallery">
-    <div class="gallery-container">
-      <div class="gallery-text">
-        <h2 data-key="our_projects">Наши проекты</h2>
-        <p data-key="gallery_description">Превосходство в инженерии и дизайне</p>
-      </div>
-      <div class="gallery-images">
+<!-- HORIZONTAL SCROLL GALLERY (REPLACED) -->
+<section id="horizontal-gallery" aria-label="Наши проекты">
+  <div class="gallery-container">
+    <div class="gallery-text" id="galleryText">
+      <h2 data-key="our_projects">Наши проекты</h2>
+      <p data-key="gallery_description">Превосходство в инженерии и дизайне</p>
+    </div>
+
+    <!-- viewport for images (keeps width and hides overflow) -->
+    <div class="gallery-images" id="galleryViewport">
+      <!-- inner track that will be translated -->
+      <div class="images-track" id="imagesTrack">
         <div class="image-slide"><img src="assets/images/house.jpg" alt=""></div>
         <div class="image-slide"><img src="assets/images/helmet.jpg" alt=""></div>
         <div class="image-slide"><img src="assets/images/workers.jpg" alt=""></div>
-        <!-- Add more images -->
+        <!-- add more slides as needed -->
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- SCROLL-REVEAL TEXT -->
-  <section id="scroll-text">
-    <div class="scroll-text-container">
-      <div class="text-block" data-key="quality">Качество в каждой детали</div>
-      <div class="text-block" data-key="precision">Прецизионная инженерия</div>
-      <div class="text-block" data-key="sustainability">Устойчивое развитие</div>
-      <div class="text-block" data-key="excellence">Совершенство в проектировании</div>
-    </div>
-  </section>
 
   <!-- FOOTER -->
   <footer>
