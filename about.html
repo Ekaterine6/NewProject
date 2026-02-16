@@ -3,57 +3,75 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-key="about">О нас</title>
+  <title data-key="about">О нас | IBRAGIM STROY</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<header>
-  <nav id="navbar">
-    <div class="logo">ARCHITECTURE</div>
-    <ul class="nav-links">
-      <li data-key="our_projects"><a href="our-projects.html">Наши проекты</a></li>
-      <li data-key="people"><a href="people.html">Команда</a></li>
-      <li data-key="careers"><a href="careers.html">Карьера</a></li>
-      <li data-key="about"><a href="about.html">О нас</a></li>
-      <li data-key="contact"><a href="contact.html">Контакты</a></li>
-    </ul>
-    <div class="lang-toggle">
-      <span id="ru" class="active">RU</span> | <span id="en">EN</span>
+  <!-- ================= NAVBAR ================= -->
+  <header>
+    <nav id="navbar">
+      <!-- Logo image -->
+      <a href="index.html" class="logo-link">
+        <img src="assets/images/logo.png" alt="IBRAGIM STROY Logo" class="logo-img">
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="our-projects.html">Наши проекты</a></li>
+        <li><a href="people.html">Команда</a></li>
+        <li><a href="careers.html">Карьера</a></li>
+        <li><a href="about.html" class="active">О нас</a></li>
+        <li><a href="contact.html">Контакты</a></li>
+      </ul>
+
+      <div class="lang-toggle">
+        <span id="ru" class="active">RU</span> | 
+        <span id="en">EN</span>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ================= LANDING / HERO ================= -->
+  <section id="landing">
+    <div class="landing-overlay">
+      <h1 data-key="about">История и философия IBRAGIM STROY</h1>
+      <p data-key="about_intro">
+        Мы создаем архитектурные шедевры с точностью, страстью и инженерным совершенством.
+      </p>
     </div>
-  </nav>
-</header>
+  </section>
 
-<section id="landing">
-  <div class="landing-overlay">
-    <h1 data-key="about">История и философия компании</h1>
-    <p data-key="about_intro">Мы создаем архитектурные шедевры с точностью и страстью</p>
-  </div>
-</section>
-
-<section id="about-content">
-  <div class="about-text">
-    <p>Компания была основана в 2005 году и с тех пор реализовала более 150 проектов...</p>
-    <p>Наш подход сочетает инновации, устойчивость и инженерное совершенство...</p>
-  </div>
-</section>
-
-<footer>
-  <div class="footer-content">
-    <h2 data-key="cta">Начните ваш проект</h2>
-    <p data-key="footer_text">© 2026 Premium Construction & Architecture. Все права защищены.</p>
-    <ul class="footer-links">
-      <li><a href="our-projects.html" data-key="our_projects">Наши проекты</a></li>
-      <li><a href="people.html" data-key="people">Команда</a></li>
-      <li><a href="contact.html" data-key="contact">Контакты</a></li>
-    </ul>
-    <div class="socials">
-      <span>IG</span><span>LI</span><span>FB</span>
+  <!-- ================= ABOUT CONTENT ================= -->
+  <section id="about-content">
+    <div class="about-text">
+      <p>Компания IBRAGIM STROY была основана в 2005 году и с тех пор реализовала более 150 проектов на высочайшем уровне.</p>
+      <p>Наш подход сочетает инновации, устойчивость и инженерное совершенство, создавая уникальные пространства для наших клиентов.</p>
     </div>
-  </div>
-</footer>
+  </section>
 
-<script src="js/main.js"></script>
-<script src="js/language.js"></script>
+  <!-- ================= FOOTER ================= -->
+  <footer>
+    <div class="footer-content">
+      <h2 data-key="cta">Начните ваш проект с IBRAGIM STROY</h2>
+      <p data-key="footer_text">© 2026 IBRAGIM STROY. Все права защищены.</p>
+      <ul class="footer-links">
+        <li><a href="our-projects.html">Наши проекты</a></li>
+        <li><a href="people.html">Команда</a></li>
+        <li><a href="contact.html">Контакты</a></li>
+      </ul>
+      <div class="socials">
+        <span>IG</span>
+        <span>LI</span>
+        <span>FB</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= SCRIPTS ================= -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/language.js"></script>
+
 </body>
 </html>
