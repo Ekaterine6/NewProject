@@ -116,85 +116,25 @@ header nav.solid {
 #horizontal-gallery {
   position: relative;
   height: 100vh;
-  display: flex;
-  align-items: center;
-  overflow: hidden; /* prevent page artifacts */
+  overflow: hidden;
 }
 
-.gallery-container {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  align-items: stretch;
-}
-
-/* left column with text; sticky keeps it in view */
-.gallery-text {
-  position: sticky;
-  top: 50%;
-  transform: translateY(-50%) translateX(0);
-  width: 30%;
-  padding-left: 50px;
-  z-index: 2;
-  will-change: transform, opacity;
-}
-
-/* images viewport (right side) */
 .gallery-images {
-  width: 70%;
-  height: 100%;
-  overflow: hidden; /* viewport - hide overflow */
-  position: relative;
-}
-
-/* track that will translate horizontally */
-.images-track {
   display: flex;
   height: 100%;
-  transition: transform 0.35s cubic-bezier(.22,.9,.35,1);
-  will-change: transform;
-  touch-action: pan-y; /* allow vertical page pan outside the section */
 }
 
-/* slides: each is full viewport-of-viewport (i.e., take full width of the viewport-right area) */
 .image-slide {
   min-width: 100%;
   height: 100%;
-  flex-shrink: 0;
-  position: relative;
 }
 
 .image-slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
-  pointer-events: none;
-  user-select: none;
 }
 
-/* a subtle fade/overlay when dragging */
-.gallery-images.dragging .images-track {
-  transition: none;
-  cursor: grabbing;
-}
-
-/* make text animate smoother */
-.gallery-text h2, .gallery-text p {
-  transition: transform 0.35s cubic-bezier(.22,.9,.35,1), opacity 0.35s;
-}
-
-/* responsive tweaks */
-@media (max-width: 900px) {
-  .gallery-text { width: 40%; padding-left: 20px; font-size: 0.92rem; }
-  .gallery-images { width: 60%; }
-}
-@media (max-width: 640px) {
-  .gallery-container { flex-direction: column; }
-  .gallery-text { position: relative; width: 100%; top: auto; transform: none; padding: 30px; text-align: center; }
-  .gallery-images { width: 100%; height: 60vh; }
-  .image-slide { min-width: 100%; }
-}
 
 
 /* FOOTER */
