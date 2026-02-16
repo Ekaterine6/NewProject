@@ -16,24 +16,20 @@ body {
   color: #fff;
   overflow-x: hidden;
 }
-/* Ensure navbar is always clickable */
+
 header {
-  position: relative;
+  position: fixed;
+  top: 0;
+  width: 100%;
   z-index: 2000;
+  pointer-events: auto; /* ensures clicks register */
 }
 
-
-/* NAVBAR */
 header nav {
-  position: fixed;
-  width: 100%;
-  top: 0;
-  left: 0;
-  padding: 20px 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 2001;
+  padding: 20px 50px;
   transition: background 0.3s;
 }
 
@@ -43,8 +39,8 @@ header nav.solid {
 
 .nav-links {
   display: flex;
-  list-style: none;
   gap: 30px;
+  list-style: none;
 }
 
 .nav-links li a {
@@ -58,16 +54,17 @@ header nav.solid {
   opacity: 0.7;
 }
 
-/* LANG TOGGLE */
 .lang-toggle span {
   cursor: pointer;
   margin-left: 10px;
   font-weight: 500;
 }
+
 .lang-toggle span.active {
   font-weight: bold;
   text-decoration: underline;
 }
+
 
 /* LANDING VIDEO */
 #landing {

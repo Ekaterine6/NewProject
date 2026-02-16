@@ -1,8 +1,20 @@
+// ================= NAVBAR SCROLL & LINK FIX =================
 window.addEventListener('scroll', () => {
   const navbar = document.getElementById('navbar');
   if (window.scrollY > 50) navbar.classList.add('solid');
   else navbar.classList.remove('solid');
 });
+
+// No more e.preventDefault() — links now work normally
+// Optional: smooth scroll for same-page anchors
+document.querySelectorAll('header nav a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
 
 const counters = document.querySelectorAll('.count');
 const options = { threshold: 0.5 };
