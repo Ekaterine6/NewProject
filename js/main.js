@@ -108,3 +108,13 @@ window.addEventListener("load", () => {
 
 });
 
+
+document.querySelectorAll('header nav a').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const href = link.getAttribute('href');
+    window.location.href = href;
+  });
+});
+
+
