@@ -109,12 +109,11 @@ window.addEventListener("load", () => {
 });
 
 
+// Allow default link behavior (keeps right-click / middle-click working)
 document.querySelectorAll('header nav a').forEach(link => {
-  link.addEventListener('click', e => {
-    e.preventDefault();
-    const href = link.getAttribute('href');
-    window.location.href = href;
+  link.addEventListener('click', (e) => {
   });
 });
+
 
 

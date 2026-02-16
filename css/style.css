@@ -6,6 +6,11 @@
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+header, header nav, .nav-links, .nav-links li a {
+  pointer-events: auto !important;
+}
+
+
 body {
   background: #000;
   color: #fff;
