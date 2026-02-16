@@ -119,7 +119,7 @@ header nav.solid {
   overflow: hidden;
 }
 
-/* ===== PREMIUM FRAMED GALLERY STYLE ===== */
+/* =====  GALLERY STYLE ===== */
 
 .gallery-images {
   display: flex;
@@ -204,4 +204,173 @@ footer ul li a:hover {
   display: flex;
   justify-content: center;
   gap: 20px;
+}
+
+
+
+/* ======================= NAV FIX (ensure clickable) ======================= */
+header nav {
+  z-index: 99999;             
+  pointer-events: auto;      
+}
+
+/* ======================= PREMIUM FRAMED GALLERY VISUALS ======================= */
+
+/* small tuning variables */
+:root{
+  --frame-padding: 18px;
+  --active-scale: 1.06;
+  --idle-scale: 1.00;
+  --frame-radius: 6px;
+  --glow-soft: rgba(255,255,255,0.06);
+  --glow-strong: rgba(255,255,255,0.14);
+}
+
+/* container base (keep pin behavior intact) */
+.gallery-images {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  position: relative;
+  background: linear-gradient(180deg, rgba(0,0,0,0.02) 0%, rgba(0,0,0,0.06) 100%);
+  isolation: isolate;
+  padding-left: 2vw; 
+  padding-right: 2vw;
+}
+
+/* each slide area centers framed content */
+.image-slide {
+  min-width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2vw;
+  box-sizing: border-box;
+}
+
+/* inner wrapper holds image + caption consistently */
+.slide-inner {
+  width: 86%;
+  height: 82%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  position: relative;
+}
+
+/* framed image with black matte, thin museum line, white glow behind */
+.slide-inner img {
+  width: 100%;
+  height: calc(100% - 74px); 
+  object-fit: cover;
+  display: block;
+  padding: var(--frame-padding);  
+  background: #000;                   
+  border-radius: var(--frame-radius);
+  outline: 1px solid rgba(255,255,255,0.025);
+  outline-offset: -10px;
+  box-shadow:
+    0 10px 40px rgba(0,0,0,0.55),     
+    0 30px 100px rgba(0,0,0,0.55),
+    0 0 60px var(--glow-soft);         
+  transform: scale(var(--idle-scale));
+  transition: transform .6s cubic-bezier(.2,.9,.3,1), box-shadow .6s, filter .6s;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* caption under the image */
+.slide-caption {
+  margin-top: 14px;
+  padding: 6px 4px 0 4px;
+  color: rgba(255,255,255,0.95);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transform: translateY(6px);
+  transition: transform .45s cubic-bezier(.2,.9,.3,1), opacity .45s;
+}
+.slide-caption h3 { font-size: 1.06rem; margin: 0; font-weight: 600; letter-spacing: 0.02em; }
+.slide-caption p  { margin: 0; font-size: 0.92rem; color: rgba(255,255,255,0.75); }
+
+/* active vs idle slide styles (JS toggles .active on .image-slide) */
+.image-slide.active .slide-inner img {
+  transform: scale(var(--active-scale));
+  box-shadow:
+    0 40px 140px rgba(0,0,0,0.6),
+    0 80px 240px rgba(0,0,0,0.6),
+    0 0 120px var(--glow-strong);
+  filter: saturate(1.06) contrast(1.03);
+}
+.image-slide:not(.active) .slide-inner img {
+  opacity: 0.96;
+  filter: grayscale(0.06) contrast(0.96) brightness(0.98);
+  transform: scale(0.998);
+}
+
+/* caption visible on active */
+.image-slide.active .slide-caption { transform: translateY(0); opacity: 1; }
+.image-slide .slide-caption { opacity: 0.88; }
+
+/* gallery UI — counter + dots */
+.gallery-ui {
+  position: absolute;
+  right: 48px;
+  bottom: 36px;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  pointer-events: auto;
+  user-select: none;
+}
+
+.slide-counter {
+  color: rgba(255,255,255,0.95);
+  font-weight: 600;
+  font-size: 0.98rem;
+  letter-spacing: 0.06em;
+  backdrop-filter: blur(6px);
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: rgba(0,0,0,0.28);
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+.gallery-dots { display:flex; gap: 10px; align-items:center; }
+.gallery-dots .dot{
+  width: 10px; height: 10px; border-radius: 999px;
+  background: rgba(255,255,255,0.16);
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: transform .36s cubic-bezier(.2,.9,.3,1), background .36s, box-shadow .36s;
+  cursor: pointer;
+}
+.gallery-dots .dot.active{
+  transform: scale(1.45);
+  background: rgba(255,255,255,0.96);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.45);
+}
+
+/* subtle cinematic grain overlay */
+.gallery-images::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" opacity="0.03"><filter id="g"><feTurbulence baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23g)"/></svg>');
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+}
+
+/* responsive: reduce sizes on smaller screens */
+@media (max-width: 900px) {
+  .slide-inner { width: 92%; height: 74%; }
+  .gallery-ui { right: 18px; bottom: 18px; gap: 10px; }
+}
+@media (max-width: 640px) {
+  .slide-inner { width: 96%; height: 60%; }
+  .slide-caption h3 { font-size: 1rem; }
+  .gallery-ui { position: relative; right: auto; bottom: auto; margin-top: 12px; justify-content: center; }
 }
