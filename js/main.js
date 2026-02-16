@@ -1,12 +1,12 @@
-// ================= NAVBAR SCROLL & LINK FIX =================
+// ================= NAVBAR SCROLL =================
 window.addEventListener('scroll', () => {
   const navbar = document.getElementById('navbar');
+  if (!navbar) return;
   if (window.scrollY > 50) navbar.classList.add('solid');
   else navbar.classList.remove('solid');
 });
 
-// No more e.preventDefault() — links now work normally
-// Optional: smooth scroll for same-page anchors
+// Smooth scroll for same-page anchors
 document.querySelectorAll('header nav a[href^="#"]').forEach(link => {
   link.addEventListener('click', e => {
     e.preventDefault();
@@ -15,7 +15,7 @@ document.querySelectorAll('header nav a[href^="#"]').forEach(link => {
   });
 });
 
-
+// ================= COUNTERS =================
 const counters = document.querySelectorAll('.count');
 const options = { threshold: 0.5 };
 const observer = new IntersectionObserver(entries => {
@@ -41,6 +41,7 @@ counters.forEach(counter => observer.observe(counter));
 
 gsap.registerPlugin(ScrollTrigger);
 
+// ================= HORIZONTAL GALLERY =================
 window.addEventListener("load", () => {
   const gallery = document.querySelector("#horizontal-gallery");
   const images = document.querySelector(".gallery-images");
@@ -66,17 +67,19 @@ window.addEventListener("load", () => {
     }
   });
 
-  gsap.to(text, {
-    x: -120,
-    opacity: 0.85,
-    scrollTrigger: {
-      trigger: gallery,
-      start: "top top",
-      end: () => "+=" + getTotalWidth(),
-      scrub: 1.5,
-      invalidateOnRefresh: true
-    }
-  });
+  if (text) {
+    gsap.to(text, {
+      x: -120,
+      opacity: 0.85,
+      scrollTrigger: {
+        trigger: gallery,
+        start: "top top",
+        end: () => "+=" + getTotalWidth(),
+        scrub: 1.5,
+        invalidateOnRefresh: true
+      }
+    });
+  }
 
   (function() {
     const slides = gsap.utils.toArray('.image-slide');
@@ -95,7 +98,8 @@ window.addEventListener("load", () => {
       btn.addEventListener('click', () => {
         const totalScroll = getTotalWidth();
         const targetX = (totalScroll / (total - 1)) * i;
-        const scrollTween = gsap.to(window, {scrollTo: {y: targetX + gallery.offsetTop}, duration: 1});
+        const topY = Math.round(targetX + gallery.offsetTop);
+        window.scrollTo({ top: topY, behavior: 'smooth' });
       });
       dotsWrap.appendChild(btn);
     });
@@ -120,12 +124,64 @@ window.addEventListener("load", () => {
 
 });
 
+// ================= HAMBURGER MENU (animated + scroll lock) =================
+(function() {
+  const nav = document.querySelector('header nav');
+  if (!nav) return;
 
-// Allow default link behavior (keeps right-click / middle-click working)
-document.querySelectorAll('header nav a').forEach(link => {
-  link.addEventListener('click', (e) => {
-  });
-});
+  if (!document.querySelector('.hamburger')) {
+    const hamburger = document.createElement('button');
+    hamburger.className = 'hamburger';
+    hamburger.setAttribute('aria-label', 'Toggle navigation');
+    hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.innerHTML = '<span class="hamburger-lines"></span>';
+    nav.prepend(hamburger);
 
+    const navLinks = nav.querySelector('.nav-links');
 
+    const openMenu = () => {
+      navLinks && navLinks.classList.add('show');
+      hamburger.classList.add('open');
+      hamburger.setAttribute('aria-expanded', 'true');
+      document.body.classList.add('nav-open'); // body scroll lock
+    };
+    const closeMenu = () => {
+      navLinks && navLinks.classList.remove('show');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('nav-open'); // release scroll lock
+    };
+    const toggleMenu = () => {
+      if (navLinks && navLinks.classList.contains('show')) closeMenu();
+      else openMenu();
+    };
 
+    hamburger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleMenu();
+    });
+
+    // Close menu when clicking a nav link (mobile)
+    nav.querySelectorAll('.nav-links a').forEach(a => {
+      a.addEventListener('click', () => {
+        if (window.innerWidth <= 768) closeMenu();
+      });
+    });
+
+    // Close menu when clicking outside nav
+    document.addEventListener('click', (e) => {
+      if (window.innerWidth > 768) return;
+      if (!nav.contains(e.target)) closeMenu();
+    });
+
+    // Close menu on ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+
+    // Close menu on resize to desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) closeMenu();
+    });
+  }
+})();
